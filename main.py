@@ -37,7 +37,7 @@ and posts alerts to mastodon.')
         try:
             site_data = requests.get(config['site_url'])
         except Exception as e:
-            logging.error("Connected closed!")
+            logging.error("Connection closed!")
             logging.error(e)
             continue
         # For the eventual case that Goa's server glitches out
@@ -67,12 +67,12 @@ def parse_site(s):
         and game/movie title """
     # For most pings there's nothing going on, so only 'Game: ' is given.
     # Just return with everything as None and don't waste time.
-    # ignore empty strings too.
+    # Ignore empty strings too.
     if s == 'Game: ' or s == '':
         logging.info("Empty stream string.")
         return (None, None)
     # split the string into a list around the "streamer\nGame: game_title"
-    # newline
+    # newline and label.
     pieces = s.split("\nGame: ")
     # no listed streamer case, e.g. 'Game: Some Game Title'
     if len(pieces) < 2:
