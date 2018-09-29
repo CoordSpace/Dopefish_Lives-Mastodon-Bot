@@ -1,0 +1,11 @@
+[Unit]
+Description=Simple Dopefish_lives to Mastodon bot.
+
+[Service]
+Type=simple
+WorkingDirectory=/path/to/Dopefish_Lives-Mastodon-Bot/
+ExecStart=/path/to/Dopefish_Lives-Mastodon-Bot/venv/bin/python main.py config.yaml
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

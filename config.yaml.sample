@@ -1,0 +1,46 @@
+# Number of seconds between site polls
+polling_interval: 600
+
+# GoaLitiuM's parsed topic information endpoint
+site_url: http://goalitium.kapsi.fi/dopelives_status3
+
+# A selection of toot formats that will be picked from randomly
+toot_format:
+  - "{streamer} is now streaming {title}! http://vacker.tv/watch?c=live"
+  - "{streamer} is now live with {title}! http://vacker.tv/watch?c=live"
+  - "{streamer} is now streaming {title}! Come watch at http://vacker.tv/watch?c=live"
+
+mastodon:
+  api_base_url:
+  client_key:
+  client_secret:
+  access_token:
+
+logging:
+  version: 1
+  formatters:
+    brief:
+      format: '%(message)s'
+    precise:
+      format: '%(asctime)s %(levelname)-8s %(name)-15s %(message)s'
+      datefmt: '%Y-%m-%d %H:%M:%S'
+  handlers:
+    console:
+      class: logging.StreamHandler
+      formatter: brief
+      level: ERROR
+      stream: ext://sys.stdout
+    file:
+      class : logging.handlers.TimedRotatingFileHandler
+      level: DEBUG
+      formatter: precise
+      interval: 1
+      when: D
+      backupCount: 7
+      filename: dopefish_mastodon.log
+  root:
+      level: INFO
+      handlers:
+        - file
+        - console
+      propagate: True
