@@ -73,9 +73,9 @@ def parse_site(s):
         return (None, None)
     # split the string into a list around the "streamer\nGame: game_title"
     # newline and label.
-    if 'Game:' in s:
+    if '\nGame: ' in s:
         pieces = s.split("\nGame: ")
-    if 'Movie' in s:
+    if '\nMovie: ' in s:
         pieces = s.split("\nMovie: ")
     # no listed streamer case, e.g. 'Game: Some Game Title'
     if len(pieces) < 2:
